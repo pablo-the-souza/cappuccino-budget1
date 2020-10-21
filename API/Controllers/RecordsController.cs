@@ -38,6 +38,15 @@ namespace CourseLibrary.API.Controllers
 
             return Ok();
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Record> DeleteRecord(int id)
+        {
+            var recordForDeletion = _context.Records.FirstOrDefault(r => r.Id == id);
+            _context.Records.Remove(recordForDeletion);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }
 
