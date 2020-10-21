@@ -17,11 +17,26 @@ namespace CourseLibrary.API.Controllers
         {
             _context = context;
         }
-
-        [HttpGet()]
-        public ActionResult<IEnumerable<Record>> GetAuthors()
+        
+        [HttpGet]
+        public ActionResult<IEnumerable<Record>> GetRecords()
         {
             return _context.Records.ToList();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Record> GetRecordById(int id)
+        {
+            return _context.Records.Find(id);
+        }
+
+        [HttpPost]
+        public ActionResult<Record> AddRecord([FromBody] Record record)
+        {
+            _context.Records.Add(record);
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
