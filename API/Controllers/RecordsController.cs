@@ -47,6 +47,22 @@ namespace CourseLibrary.API.Controllers
             _context.SaveChanges();
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<Record> UpdateRecord(int id, [FromBody] Record record)
+        {
+            var recordForUpdate = _context.Records.FirstOrDefault(r => r.Id == id);
+            
+            recordForUpdate.Date = record.Date; 
+            recordForUpdate.Name = record.Name; 
+            recordForUpdate.Value = record.Value;
+            recordForUpdate.Category = record.Category; 
+            recordForUpdate.Type = record.Date; 
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }
 
