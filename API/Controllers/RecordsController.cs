@@ -24,19 +24,19 @@ namespace CourseLibrary.API.Controllers
             return _context.Records.ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetRecordById")]
         public ActionResult<Record> GetRecordById(int id)
         {
             return _context.Records.Find(id);
         }
 
         [HttpPost]
-        public ActionResult<Record> AddRecord([FromBody] Record record)
+        public ActionResult<Record> AddRecord(Record record)
         {
             _context.Records.Add(record);
             _context.SaveChanges();
 
-            return Ok();
+            return CreatedAtAction("GetRecordById", new { id = record.Id }, record);
         }
 
         [HttpDelete("{id}")]
