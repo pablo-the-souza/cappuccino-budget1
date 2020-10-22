@@ -24,7 +24,7 @@ export class RecordDetailComponent implements OnInit {
       id: 0, 
       date : "",
       name: "",
-      value: 0 , 
+      value: "" , 
       category: "",
       type: ""
     }

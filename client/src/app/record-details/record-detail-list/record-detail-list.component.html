@@ -1,1 +1,12 @@
-<p>record-detail-list works!</p>
+<table class="table table-hover">
+    <tbody>
+        <tr *ngFor="let rd of service.list">
+            <td>{{rd.id}}</td>
+            <td>{{rd.date}}</td>
+            <td>{{rd.name}}</td>
+            <td>{{rd.value}}</td>
+            <td>{{rd.category}}</td>
+            <td>{{rd.type}}</td>
+        </tr>
+    </tbody>
+</table>
