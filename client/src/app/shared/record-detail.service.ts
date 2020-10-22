@@ -12,9 +12,20 @@ export class RecordDetailService {
 
   constructor(private http: HttpClient) { }
 
-  postRecordDetail(formData: RecordDetail) {
-    console.log(formData)
-    return this.http.post(this.rootURL+'/records', formData)
+  postRecordDetail() {
+    return this.http.post(this.rootURL+'/records', this.formData)
+  }
+
+  putRecordDetail() {
+    return this.http.put(
+      this.rootURL+'/records/' + this.formData.id, 
+      this.formData)
+  }
+
+  deleteRecordDetail(id) {
+    return this.http.delete(
+      this.rootURL+'/records/' + id, 
+  )
   }
 
   refreshList() {

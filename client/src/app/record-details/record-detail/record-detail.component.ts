@@ -18,25 +18,46 @@ export class RecordDetailComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     if (form != null)
-    form.resetForm();
+      form.resetForm();
 
     this.service.formData = {
-      id: 0, 
-      date : "",
+      id: 0,
+      date: "",
       name: "",
-      value: "" , 
+      value: "",
       category: "",
       type: ""
     }
   }
 
-  onSubmit (form: NgForm) {
-    this.service.postRecordDetail(form.value).subscribe(
-      res=> {
-        console.log("Deu Certo Porra")
+  onSubmit(form: NgForm) {
+    if (this.service.formData.id == 0)
+      this.insertRecord(form)
+    else 
+      this.updateRecord(form)
+  }
+
+  insertRecord(form: NgForm) {
+    this.service.postRecordDetail().subscribe(
+      res => {
+        console.log("Insert ok")
         this.resetForm(form);
+        this.service.refreshList();
       },
-      err=> {
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateRecord(form: NgForm) {
+    this.service.putRecordDetail().subscribe(
+      res => {
+        console.log("Update ok")
+        this.resetForm(form);
+        this.service.refreshList();
+      },
+      err => {
         console.log(err);
       }
     );

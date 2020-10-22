@@ -1,7 +1,7 @@
 
 
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-
+    <input type="hidden" name="id" [value]="service.formData.id">
     <div class="form-group">
         <input 
         name="date" 
